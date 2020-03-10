@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.css"
+    />
+    <style>
+      img {
+        max-width: 70%;
+      }
+
+      .image-center {
+        display: block;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form id="form">
+      Title:<br />
+      <input type="text" id="title" value="Movie Title" pattern=".{2,}" /><br />
+      Rating:<br />
+      <input type="number" id="rating" value="0" min="0" max="10" /><br /><br />
+      <input type="submit" id="submit" />
+    </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+      let $title;
+      let $rating;
+      $("#form").on("submit", function(evt) {
+        evt.preventDefault();
+        $title = $("#title").val();
+        $rating = $("#rating").val();
+        let $newTitle = $("<div>");
+        let $removeButton = $("<button>");
+        $removeButton.on("click", remove);
+        $newTitle.text($title + " " + $rating);
+        $newTitle.append($removeButton);
+        $("body").append($newTitle);
+        console.log($newTitle.text());
+      });
+      function remove(evt) {
+        $(event.target)
+          .parent()
+          .remove();
+      }
+    </script>
+  </body>
+</html>
